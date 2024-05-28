@@ -17,3 +17,8 @@ export type TNormalizeData = {
 	};
 	allIds: string[];
 };
+
+export type TComment = {
+	id: number;
+	email: string;
+};
