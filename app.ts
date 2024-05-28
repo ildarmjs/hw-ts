@@ -1,5 +1,5 @@
 import { posts } from "./data/posts";
-import { TNormalizeData, TPosts, TotalPriceParams } from "./types/types";
+import { TComment, TNormalizeData, TPosts, TotalPriceParams } from "./types/types";
 
 // #1 TotalPrice 
 
@@ -43,3 +43,27 @@ console.log(normalizeData(posts))
  */
 
 // ===============================================================================================
+
+
+// #3 GetDataComment
+
+const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments'
+
+const getData = async (url: string): Promise<void> => {
+	try {
+		const response = await fetch(url)
+		if (!response.ok) {
+			throw new Error('Не удалось получить данные')
+		}
+
+		const data: TComment[] = await response.json()
+
+		data.forEach((comment) => {
+			console.log(`ID: ${comment.id}, Email: ${comment.email}`)
+		})
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+getData(COMMENTS_URL);
